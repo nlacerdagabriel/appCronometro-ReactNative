@@ -1,112 +1,79 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+export default function appCronometro() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.container}>
+      <Image
+        source={require("./src/crono.png")}
+      />
+
+      <Text style={styles.timer}>00:00:00</Text>
+
+      <View style={styles.btnArea}>
+        <TouchableOpacity style={styles.btn}>
+          <Text style={styles.btnText}>
+            Iniciar
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.btn}>
+          <Text style={styles.btnText}>
+            Limpar
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.lastArea}>
+        <Text style={styles.runText}>
+          Ultimo tempo: 00:03:50
+        </Text>
+      </View>
+
     </View>
+
   );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: "#00aeef"
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  timer:{
+    marginTop: -160,
+    fontSize:45,
+    fontWeight:'bold',
+    color: "#fff",
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  btnArea:{
+    flexDirection: "row",
+    marginTop: 130,
+    height: 40,
   },
-  highlight: {
-    fontWeight: '700',
+  btn:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#fff",
+    height: 40,
+    margin: 17,
+    borderRadius: 9
   },
-});
+  btnText:{
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#00aeef"
+  },
+  lastArea:{
+    marginTop:40,
+  },
+  runText:{
+    fontSize: 23,
+    color: "#fff",
+    fontStyle: "italic",
 
-export default App;
+  }
+})
